@@ -1,0 +1,195 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+
+:root {
+	--container-inline-padding: 0.5rem;
+
+	--nav-gap: 0.5rem;
+	--nav-item-clr: #333;
+	--nav-hovered-item-clr: #666;
+	--nav-item-text-sz: 1rem;
+
+	--logo-text-sz: 2rem;
+
+	--header-clr: #ffba76;
+
+	--task-list-gap: 1rem;
+	--task-item-bg-clr: #98faf8;
+	--task-item-padding: 1rem;
+	--task-item-text-clr: #333;
+	--task-title-text-sz: 1rem;
+	--task-creationTS-text-sz: 0.75rem;
+	--task-item-border-rad: 0.25rem;
+	--task-creationTS-text-clr: #666;
+	
+	--btn-text-sz: 0.75rem;
+	--btn-text-clr: #333;
+	--btn-bg-clr: #fff;
+	--btn-border-clr: #000;
+	--btn-border-rad: 0.1rem;
+	--btn-padding: 0.25rem;
+
+	--modal-bg-clr: rgba(0, 0, 0, 0.4);
+	--modal-content-padding: 2rem;
+	--modal-content-max-width: 600px;
+	--modal-content-bg-clr: #fff;
+	--modal-content-title-text-sz: 1.5rem;
+	--modal-content-border-rad: 0.25rem;
+
+	--form-gap: 0.5rem;
+	--input-padding: 0.25rem;
+	--input-text-sz: 0.75rem;
+
+	--transition-duration: 150ms;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+
+html,
+body {
+	font-family: "Roboto", sans-serif;
+}
+
+a {
+	text-decoration: none;
+}
+
+.header {
+	background-color: var(--header-clr);
+}
+
+/* Утилитарные классы */
+.container {
+	max-width: 1280px;
+	width: 100%;
+	padding-inline: var(--container-inline-padding);
+	margin-inline: auto;
+}
+
+.flex {
+	display: flex;
+}
+
+.items-center {
+	align-items: center;
+}
+
+.justify-between {
+	justify-content: space-between;
+}
+
+/* Компоненты */
+/* Кнопка */
+.btn {
+	font-size: var(--btn-text-sz);
+	color: var(--btn-text-clr);
+	background-color: var(--btn-bg-clr);
+	padding: var(--btn-padding);
+	outline: none;
+	cursor: pointer;
+	border: 1px solid var(--btn-border-clr);
+	box-shadow: none;
+	border-radius: var(--btn-border-rad);
+}
+
+/* Логотип */
+.logo {
+	padding: 1rem;
+	font-family: monospace;
+	font-weight: 800;
+	font-size: var(--logo-text-sz);
+}
+
+/* Навигация */
+.nav {
+	display: flex;
+	align-items: center;
+	gap: var(--nav-gap);
+}
+
+.nav__item {
+	color: var(--nav-item-clr);
+	font-size: var(--nav-item-text-sz);
+	cursor: pointer;
+}
+
+.nav__item:hover {
+	color: var(--nav-hovered-item-clr);
+}
+
+/* Task list */
+.task-list {
+	display: grid;
+	gap: var(--task-list-gap);
+	grid-template-columns: 1fr;
+	margin-top: 2rem;
+}
+
+.task-list__item {
+	background-color: var(--task-item-bg-clr);
+	padding: var(--task-item-padding);
+	border-radius: var(--task-item-border-rad);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+
+}
+
+.task-list__item-title {
+	color: var(--task-item-text-clr);
+	font-size: var(--task-title-text-sz);
+}
+
+.task-list__item-creationTS {
+	color: var(--task-creationTS-text-clr);
+	font-size: var(--task-creationTS-text-sz);
+	margin-top: 1rem;
+}
+
+/* Модальное окно */
+.modal {
+	position: fixed;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background-color: var(--modal-bg-clr);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.modal.hidden {
+	display: none;
+}
+
+.modal__content {
+	width: fit-content;
+	padding: var(--modal-content-padding);
+	max-width: var(--modal-content-max-width);
+	background-color: var(--modal-content-bg-clr);
+	border-radius: var(--modal-content-border-rad);
+}
+
+.modal__content-title {
+	font-size: var(--modal-content-title-text-sz);
+	font-weight: 800;
+	margin-bottom: 1rem;
+	text-align: center;
+}
+
+/* Форма */
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: var(--form-gap);
+	width: 100%;
+}
+
+.form__input {
+	padding: var(--input-padding);
+	font-size: var(--input-text-sz);
+}

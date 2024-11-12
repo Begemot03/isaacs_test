@@ -15,12 +15,21 @@ require_once __DIR__ . '/app/controllers/TaskController.php';
 
 session_start();
 
+function main()
+{
+    if($_SERVER['REQUEST_URI'] == '/') {
+        require __DIR__ . '/public/index.html'; 
+        return;
+    }
 
-$router = new Router();
+    $router = new Router();
 
-new AuthController($router);
-new TaskController($router);
+    new AuthController($router);
+    new TaskController($router);
 
-$request = new Request();
+    $request = new Request();
 
-$router->resolve($request);
+    $router->resolve($request);
+}
+
+main();

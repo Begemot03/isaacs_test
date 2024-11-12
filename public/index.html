@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/public/styles/style.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container flex items-center justify-between">
+            <span class="logo">ToDo</span>
+            <nav class="nav">
+                <span class="nav__item registration">Зарегистрироваться</span>
+                <span class="nav__item login">Войти</span>
+                <span class="nav__item logout">Выход</span>
+            </nav>
+        </div>
+    </header>
+    <section>
+        <div class="container">
+            <div class="task-list">
+                <div class="task-list__item">
+                    <div class="task-list__item-content">
+                        <div class="task-list__item-title">Задача 1</div>
+                        <small class="task-list__item-creationTS">11.02.2003</small>
+                    </div>
+                    <div class="task-list__item-tools">
+                        <button class="btn task-list__item-edit">Изменить</button>
+                        <button class="btn task-list__item-delete">Удалить</button>
+                        <input class="task-list__item-status" type="checkbox">
+                    </div>
+                </div>
+                <div class="task-list__item">
+                    <div class="task-list__item-content">
+                        <div class="task-list__item-title">Задача 1</div>
+                        <small class="task-list__item-creationTS">11.02.2003</small>
+                    </div>
+                    <div class="task-list__item-tools">
+                        <button class="task-list__item-edit">Изменить</button>
+                        <button class="task-list__item-delete">Удалить</button>
+                        <input class="task-list__item-status" type="checkbox">
+                    </div>
+                </div>
+                <div class="task-list__item">
+                    <div class="task-list__item-content">
+                        <div class="task-list__item-title">Задача 1</div>
+                        <small class="task-list__item-creationTS">11.02.2003</small>
+                    </div>
+                    <div class="task-list__item-tools">
+                        <button class="task-list__item-edit">Изменить</button>
+                        <button class="task-list__item-delete">Удалить</button>
+                        <input class="task-list__item-status" type="checkbox">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div class="modal auth-modal hidden">
+        <div class="modal__content">
+            <div class="modal__content-title">Регистрация</div>
+            <form class="form">
+                <input class="form__input" name="username" type="text" placeholder="имя пользователя">
+                <input class="form__input" name="password" type="password" placeholder="пароль">
+                <button type="submit" class="btn">Зарегистрироваться</button>
+            </form>
+        </div>
+    </div>
+    <script src="/public/main.js"></script>
+</body>
+</html>

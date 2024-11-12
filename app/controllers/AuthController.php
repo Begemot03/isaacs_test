@@ -10,10 +10,10 @@ class AuthController extends BaseController
 {
     protected function defineEndpoints(): void
     {
-        $this->registerEndpoint('GET', '/auth/check', 'check');
-        $this->registerEndpoint('POST', '/auth/logout', 'logout');
-        $this->registerEndpoint('POST', '/auth/login', 'login');
-        $this->registerEndpoint('POST', '/auth/registration', 'registration');
+        $this->registerEndpoint('GET', '/api/auth/check', 'check');
+        $this->registerEndpoint('POST', '/api/auth/logout', 'logout');
+        $this->registerEndpoint('POST', '/api/auth/login', 'login');
+        $this->registerEndpoint('POST', '/api/auth/registration', 'registration');
     }
 
     public function login(Request $request): void

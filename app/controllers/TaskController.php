@@ -16,11 +16,11 @@ class TaskController extends BaseController
     
     protected function defineEndpoints(): void
     {
-        $this->registerEndpoint('GET', '/task', 'getAllTasks');
-        $this->registerEndpoint('POST', '/task', 'createTask');
-        $this->registerEndpoint('PUT', '/task/{id}', 'updateTask');
-        $this->registerEndpoint('DELETE', '/task/{id}', 'deleteTask');
-        $this->registerEndpoint('GET', '/task/{id}', 'getTask');
+        $this->registerEndpoint('GET', '/api/task', 'getAllTasks');
+        $this->registerEndpoint('POST', '/api/task', 'createTask');
+        $this->registerEndpoint('PUT', '/api/task/{id}', 'updateTask');
+        $this->registerEndpoint('DELETE', '/api/task/{id}', 'deleteTask');
+        $this->registerEndpoint('GET', '/api/task/{id}', 'getTask');
     }
 
     public function getAllTasks()
