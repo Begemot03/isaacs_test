@@ -1,6 +1,5 @@
 <?php
 namespace App\Models;
-require_once __DIR__ . '/Database.php';
 
 class UserModel extends Database 
 {
@@ -17,11 +16,11 @@ class UserModel extends Database
 
     public function createNewUser($username, $password)
     {
-        return $this->select('insert into users(username, password) values(:username, :password)', ['username' => $username, 'password' => $password]);
+        return $this->select('insert into users(username, password) values(:username, :password);', ['username' => $username, 'password' => $password]);
     }
 
     public function getUsers() 
     {
-        return $this->select('select * from users');
+        return $this->select('select * from users;');
     }
 }
