@@ -1,4 +1,11 @@
 <?php
+namespace App\Models;
+
+require_once __DIR__ . '/app/inc/db.php';
+
+use Exception;
+use PDO;
+use PDOStatement;
 
 class Database 
 {
@@ -7,42 +14,39 @@ class Database
     public function __construct()
     {
         try {
-            $this->connection = new mysqli(DB_HOST, DB_USERNAME, DB_PASSWORD, DB_DATABASE_NAME, DB_PORT);
+            $dsn = 'mysql:host=' . DB_HOST . ';dbname=' . DB_DATABASE_NAME . ';charset=utf8mb4';
+            $opt = [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+                PDO::ATTR_EMULATE_PREPARES => false
+            ];
 
-            if(mysqli_connect_errno()) {
-                throw new Exception("Could not connect to database");
-            }
+            $this->connection = new PDO($dsn, DB_USERNAME, DB_PASSWORD, $opt);
         } catch(Exception $e) {
             throw new Exception($e->getMessage());
         }
     }
 
-    public function select($query = "", $params = [])
+    public function select($query = '', $params = []) : array
     {
         try {
             $stmt = $this->execute_statement($query, $params);
-            $result = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-            $stmt->close();
 
-            return $result;
+            return $stmt->fetchAll();
         } catch(Exception $e) {
             throw New Exception($e->getMessage());
         }
-
-        return false;
     }
 
-    private function execute_statement($query = "", $params = "") 
+    private function execute_statement($query = '', $params = []) : PDOStatement
     {
         try {
             $stmt = $this->connection->prepare($query);
 
-            if($stmt == false) {
-                throw New Exception("Unable to prepare statement" . $query);
-            }
-
-            if($params) {
-                $stmt->bind_param($params[0], $params[1]);
+            if (!empty($params)) {
+                foreach ($params as $key => $value) {
+                    $stmt->bindValue(':' . $key, $value);
+                }
             }
 
             $stmt->execute();

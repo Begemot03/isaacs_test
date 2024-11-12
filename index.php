@@ -1,11 +1,18 @@
 <?php
-$uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+use App\Controllers\AuthController;
+use Core\Request;
+use Core\Router;
 
-switch($uri) {
-    case '/':
-        require 'public/index.php';
-        break;
-    default:
-        require str_replace("api", "app", $uri);
-        break;
-}
+require_once __DIR__ . '/core/Router.php';
+require_once __DIR__ . '/core/BaseController.php';
+require_once __DIR__ . '/core/Request.php';
+require_once __DIR__ . '/app/controllers/AuthController.php';
+
+session_start();
+
+$router = new Router();
+
+new AuthController($router);
+
+$request = new Request();
+$router->resolve($request);

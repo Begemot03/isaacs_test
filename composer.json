@@ -1,0 +1,16 @@
+{
+  "name": "andre/isaacs_test",
+  "autoload": {
+    "psr-4": {
+      "Core\\": "core/",
+      "App\\": "app/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Andre",
+      "email": "andre.petrovto@mail.ru"
+    }
+  ],
+  "require": {}
+}
