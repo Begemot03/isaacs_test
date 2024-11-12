@@ -1,21 +1,27 @@
 <?php
 namespace App\Models;
-require_once __DIR__ . '/app/models/Database.php';
+require_once __DIR__ . '/Database.php';
 
 class UserModel extends Database 
 {
-    public function getUser($username)
+    public function getUser($username): array
     {
-        return $this->select('select * from users where username=:username;', ['username' => $username]);
+        $user = $this->select('select * from users where username=:username;', ['username' => $username]);
+        return ($user[0] ?? []);
     }
 
     public function isUserExist($username) : bool
     {
-        return count($this->getUser($username)) == 0;
+        return count($this->getUser($username)) > 0;
     }
 
-    public function createNewUser($limit)
+    public function createNewUser($username, $password)
     {
-        return $this->select('select * from users where id=:id;', ['id' => $limit]);
+        return $this->select('insert into users(username, password) values(:username, :password)', ['username' => $username, 'password' => $password]);
+    }
+
+    public function getUsers() 
+    {
+        return $this->select('select * from users');
     }
 }

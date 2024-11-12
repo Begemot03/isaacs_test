@@ -27,4 +27,11 @@ abstract class BaseController
         header('Content-Type: application/json');
         echo json_encode($data);
     }
+
+    public function error($msg, int $statusCode = 503): void
+    {
+        http_response_code($statusCode);
+        header('Content-Type: application/json');
+        echo json_encode(['error' => $msg]);
+    }
 }

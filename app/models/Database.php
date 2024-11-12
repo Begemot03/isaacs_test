@@ -1,7 +1,7 @@
 <?php
 namespace App\Models;
 
-require_once __DIR__ . '/app/inc/db.php';
+require_once __DIR__ . '/../inc/db.php';
 
 use Exception;
 use PDO;
