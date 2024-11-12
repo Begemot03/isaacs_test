@@ -29,7 +29,7 @@ class TaskController extends BaseController
         $userId = $this->getUserId();
 
         if($userId == -1) {
-            $this->error("Missing authentication", 403);
+            $this->error('Missing authentication', 403);
             return;
         }
 
@@ -42,12 +42,12 @@ class TaskController extends BaseController
         $userId = $this->getUserId();
 
         if($userId == -1) {
-            $this->error("Missing authentication", 403);
+            $this->error('Missing authentication', 403);
             return;
         }
 
         if($this->noTitle($request->body['title'])) {
-            $this->error("Missing post body values", 422);
+            $this->error('Missing post body values', 422);
             return;
         }
 
@@ -65,7 +65,7 @@ class TaskController extends BaseController
         $userId = $this->getUserId();
 
         if($userId == -1) {
-            $this->error("Missing authentication", 403);
+            $this->error('Missing authentication', 403);
         }
 
         $taskModel->deleteTask($id, $userId);
@@ -79,7 +79,7 @@ class TaskController extends BaseController
         $userId = $this->getUserId();
 
         if($userId == -1) {
-            $this->error("Missing authentication", 403);
+            $this->error('Missing authentication', 403);
         }
 
         $prevTaskState = $taskModel->getTask($id, $userId);
@@ -98,13 +98,13 @@ class TaskController extends BaseController
         $userId = $this->getUserId();
 
         if($userId == -1) {
-            $this->error("Missing authentication", 403);
+            $this->error('Missing authentication', 403);
         }
 
         $task = $taskModel->getTask($id, $userId);
 
         if(!$task) {
-            return $this->error("Not found", 404);
+            return $this->error('Not found', 404);
         }
 
         $this->json($task);
