@@ -10,6 +10,8 @@ class AuthController extends BaseController
 {
     protected function defineEndpoints(): void
     {
+        $this->registerEndpoint('GET', '/auth/check', 'check');
+        $this->registerEndpoint('POST', '/auth/logout', 'logout');
         $this->registerEndpoint('POST', '/auth/login', 'login');
         $this->registerEndpoint('POST', '/auth/registration', 'registration');
     }
@@ -65,6 +67,21 @@ class AuthController extends BaseController
 
         $this->addUserToSession($user);
         $this->json($user);
+    }
+
+    public function check(): void 
+    {
+        $this->json([
+            'result' => isset($_SESSION['username']) && isset($_SESSION['id'])
+        ]);
+    }
+
+    public function logout(): void
+    {
+        unset($_SESSION['username']);
+        unset($_SESSION['id']);
+
+        $this->ok(true);
     }
 
     private function isBodyValide(): bool 

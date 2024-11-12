@@ -66,6 +66,7 @@ class TaskController extends BaseController
 
         if($userId == -1) {
             $this->error('Missing authentication', 403);
+            return;
         }
 
         $taskModel->deleteTask($id, $userId);
@@ -80,6 +81,7 @@ class TaskController extends BaseController
 
         if($userId == -1) {
             $this->error('Missing authentication', 403);
+            return;
         }
 
         $prevTaskState = $taskModel->getTask($id, $userId);
@@ -99,12 +101,14 @@ class TaskController extends BaseController
 
         if($userId == -1) {
             $this->error('Missing authentication', 403);
+            return;
         }
 
         $task = $taskModel->getTask($id, $userId);
 
         if(!$task) {
-            return $this->error('Not found', 404);
+            $this->error('Not found', 404);
+            return;
         }
 
         $this->json($task);
