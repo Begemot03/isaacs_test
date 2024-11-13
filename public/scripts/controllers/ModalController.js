@@ -1,3 +1,5 @@
+import loaderController from "./LoaderController.js";
+
 export default class ModalController {
 	constructor({ selector, openBtnSelector, title, submit, submitError, submitText }) {
 		this.title = title;
@@ -25,6 +27,7 @@ export default class ModalController {
 
 		this.form.onsubmit = async (e) => {
 			e.preventDefault();
+			loaderController.show();
 			
 			try {
 				await this.submit(e);
@@ -33,6 +36,8 @@ export default class ModalController {
 			} catch(error) {
 				this.formError.textContent = error.message;
 				this.form.classList.add("error");
+			} finally {
+				loaderController.hide();
 			}
 		};
 	}

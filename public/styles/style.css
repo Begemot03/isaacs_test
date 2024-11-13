@@ -20,7 +20,7 @@
 	--task-creationTS-text-sz: 0.75rem;
 	--task-item-border-rad: 0.25rem;
 	--task-creationTS-text-clr: #666;
-	
+
 	--btn-text-sz: 0.75rem;
 	--btn-text-clr: #333;
 	--btn-bg-clr: #fff;
@@ -217,4 +217,26 @@ a {
 
 .form.error .form__error {
 	display: block;
+}
+
+/* Loader */
+.loader {
+	width: 48px;
+	height: 48px;
+	border: 5px solid #FFF;
+	border-bottom-color: #FF3D00;
+	border-radius: 50%;
+	display: inline-block;
+	box-sizing: border-box;
+	animation: rotation 1s linear infinite;
+}
+
+@keyframes rotation {
+	0% {
+		transform: rotate(0deg);
+	}
+
+	100% {
+		transform: rotate(360deg);
+	}
 }

@@ -20,11 +20,7 @@ export default class AuthController {
 
 	async login() {
 		const data = this.getFormData();
-		const response = await fetch(`${authApi}/login`, {
-			method: "POST",
-			body: JSON.stringify(data),
-			headers: { "Content-Type": "application/json" },
-		});
+		const response = await fetchJson({ path: `${authApi}/login`, method: "POST", body: data });
 		if (response.ok) this.isAuth = true;
 		else {
 			const error = await response.json();
@@ -36,11 +32,8 @@ export default class AuthController {
 
 	async registration() {
 		const data = this.getFormData();
-		const response = await fetch(`${authApi}/registration`, {
-			method: "POST",
-			body: JSON.stringify(data),
-			headers: { "Content-Type": "application/json" },
-		});
+		const response = await fetchJson({ path: `${authApi}/registration`, method: "POST", body: data });
+
 		if (response.ok) this.isAuth = true;
 		else {
 			const error = await response.json();

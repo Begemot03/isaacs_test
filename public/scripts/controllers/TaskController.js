@@ -1,4 +1,5 @@
 import { taskApi, fetchJson } from "../shared/api.js";
+import loaderController from "./LoaderController.js";
 import ModalController from "./ModalController.js";
 
 const TASK_COMPLETE = "complete";
@@ -24,34 +25,40 @@ export default class TaskController {
     async checkTask(e, task) {
         const status = e.target.checked ? TASK_COMPLETE : TASK_PENDING;
 
-        this.updateTask({ ...task, status });
+        await this.updateTask({ ...task, status });
     }
 
     async deleteTask(task) {
         await fetchJson({ path: `${taskApi}/${task.id}`, method: "DELETE" });
-        this.getTasks();
+        await this.getTasks();
     }
 
     async createTask(task) {
         await fetchJson({ path: `${taskApi}`, method: "POST", body: task });
-        this.getTasks();
+        await this.getTasks();
     }
 
     async updateTask(task) {
         await fetchJson({ path: `${taskApi}/${task.id}`, method: "PUT", body: task });
-        this.getTasks();
+        await this.getTasks();
     }
 
     async handleCreateTask(e) {
-        const data = this.getFormData();
+        loaderController.show()
 
-        this.createTask(data);
+        const data = this.getFormData();
+        await this.createTask(data);
+
+        loaderController.hide()
     }
 
     async editTaskHandler(e, task) {
-        const data = this.getFormData();
+        loaderController.show()
 
-        this.updateTask({ ...data, id: task.id });
+        const data = this.getFormData();
+        await this.updateTask({ ...data, id: task.id });
+
+        loaderController.hide()
     }
 
     createEmptyTaskList() {
@@ -80,8 +87,10 @@ export default class TaskController {
             const taskHtml = this.getTaskHtml(task);
             const taskNode = htmlToNode(taskHtml);
 
-            taskNode.querySelector(".task-list__item-delete").addEventListener("click", () => {
-                this.deleteTask(task);
+            taskNode.querySelector(".task-list__item-delete").addEventListener("click", async () => {
+                loaderController.show()
+                await this.deleteTask(task);
+                loaderController.hide()
             });
 
             taskNode.querySelector(".task-list__item-edit").addEventListener("click", () => {

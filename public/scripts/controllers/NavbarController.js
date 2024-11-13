@@ -1,3 +1,5 @@
+import loaderController from "./LoaderController.js";
+
 export default class NavbarController {
 	constructor(authController) {
 		this.authController = authController;
@@ -30,8 +32,11 @@ export default class NavbarController {
 		this.addTask.classList.remove("hidden");
 
 		logoutBtn.addEventListener("click", async () => {
+			loaderController.show();
+
 			await this.authController.logout();
 			this.update();
+			loaderController.hide();
 		});
 
 		this.nav.appendChild(logoutBtn);
