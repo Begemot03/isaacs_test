@@ -7,6 +7,10 @@ use Exception;
 use PDO;
 use PDOStatement;
 
+/**
+ * Базовый класс для работы с базой данных, при создании подключается к бд
+ * Определяет методы для запросов в бд
+ */
 class Database 
 {
     protected $connection = null;

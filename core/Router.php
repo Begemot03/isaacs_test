@@ -4,13 +4,17 @@ namespace Core;
 
 use Exception;
 
+/**
+ * Класс отвечает за обработку запроса и определения, какой обработчик эндоинта вызвать
+ * Поддерживает динамические параметры запроса
+ */
 class Router
 {
     private array $routes = [];
 
     public function register(string $method, string $path, string $controller, string $action): void
     {
-        // Подготовка шаблона для динамических параметров, таких как /task/{id}
+
         $pattern = preg_replace('/\{([a-zA-Z0-9_]+)\}/', '(?P<\1>[^/]+)', $path);
         $this->routes[strtoupper($method)][$pattern] = [
             'controller' => $controller,

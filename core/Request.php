@@ -1,6 +1,11 @@
 <?php
 namespace Core;
 
+
+/**
+ * Отвечает за информацию о запросе
+ * Хранит в себе информацию о методе, пути и тело запроса
+ */
 class Request
 {
     public string $method;
