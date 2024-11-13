@@ -26,6 +26,11 @@ export default class AuthController {
 			headers: { "Content-Type": "application/json" },
 		});
 		if (response.ok) this.isAuth = true;
+		else {
+			const error = await response.json();
+			throw new Error(error.error);
+		}
+
 		this.appController.update();
 	}
 
@@ -37,6 +42,11 @@ export default class AuthController {
 			headers: { "Content-Type": "application/json" },
 		});
 		if (response.ok) this.isAuth = true;
+		else {
+			const error = await response.json();
+			throw new Error(error.error);
+		}
+
 		this.appController.update();
 	}
 

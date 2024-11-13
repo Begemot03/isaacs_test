@@ -36,6 +36,7 @@
 	--modal-content-border-rad: 0.25rem;
 
 	--form-gap: 0.5rem;
+	--form-error-color: red;
 	--input-padding: 0.25rem;
 	--input-text-sz: 0.75rem;
 
@@ -196,7 +197,24 @@ a {
 	width: 100%;
 }
 
+.form:has(.form__input[type="checkbox"]) div {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+
 .form__input {
 	padding: var(--input-padding);
 	font-size: var(--input-text-sz);
+}
+
+.form__error {
+	display: none;
+	color: var(--form-error-color);
+	text-align: center;
+}
+
+.form.error .form__error {
+	display: block;
 }

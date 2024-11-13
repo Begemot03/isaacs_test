@@ -93,10 +93,9 @@ export default class TaskController {
                     submitText: "Сохранить",
                 });
 
-                modal.openModal();
-
                 modal.modal.querySelector(".form__input[type=text]").value = task.title;
                 modal.modal.querySelector(".form__input[type=checkbox]").checked = task.status == TASK_COMPLETE;
+                modal.openModal();
             });
 
             taskNode.querySelector(".task-list__item-status").addEventListener("change", (e) => {

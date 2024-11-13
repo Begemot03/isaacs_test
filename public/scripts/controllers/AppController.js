@@ -44,11 +44,9 @@ export default class AppController {
 		e.preventDefault();
 
 		if (this.loginModal.isOpen) {
-			await this.authController.login(e);
+			return await this.authController.login(e);
 		} else {
-			await this.authController.registration(e);
+			return await this.authController.registration(e);
 		}
-        
-		this.update();
 	}
 }

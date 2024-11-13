@@ -1,5 +1,5 @@
 export default class ModalController {
-	constructor({ selector, openBtnSelector, title, submit, submitText }) {
+	constructor({ selector, openBtnSelector, title, submit, submitError, submitText }) {
 		this.title = title;
 		this.submit = submit;
 		this.submitText = submitText;
@@ -7,6 +7,8 @@ export default class ModalController {
 		this.submitBtn = this.modal.querySelector(".btn");
 		this.modalTitle = this.modal.querySelector(".modal__content-title");
 		this.modalOpenBtn = document.querySelector(openBtnSelector);
+		this.formError = this.modal.querySelector(".form__error");
+		this.form = this.modal.querySelector(".form");
 		this.isOpen = false;
 
 		this.modalOpenBtn.addEventListener("click", () => {
@@ -21,11 +23,17 @@ export default class ModalController {
 			.querySelector(".modal__content")
 			.addEventListener("click", (e) => e.stopPropagation());
 
-		this.modal.querySelector(".form").onsubmit = (e) => {
+		this.form.onsubmit = async (e) => {
 			e.preventDefault();
-			this.submit(e).then(() => {
+			
+			try {
+				await this.submit(e);
+				this.form.classList.remove("error");
 				this.closeModal();
-			});
+			} catch(error) {
+				this.formError.textContent = error.message;
+				this.form.classList.add("error");
+			}
 		};
 	}
 
@@ -38,6 +46,7 @@ export default class ModalController {
 
 	closeModal() {
 		this.isOpen = false;
+		this.form.classList.remove("error");
 		this.modal.classList.add("hidden");
 	}
 }
