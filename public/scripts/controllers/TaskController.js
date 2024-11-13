@@ -33,7 +33,6 @@ export default class TaskController {
     }
 
     async createTask(task) {
-        console.log(task)
         await fetchJson({ path: `${taskApi}`, method: "POST", body: task });
         this.getTasks();
     }
@@ -49,7 +48,7 @@ export default class TaskController {
         this.createTask(data);
     }
 
-    async editTaskHandler(e,task) {
+    async editTaskHandler(e, task) {
         const data = this.getFormData();
 
         this.updateTask({ ...data, id: task.id });
@@ -95,6 +94,9 @@ export default class TaskController {
                 });
 
                 modal.openModal();
+
+                modal.modal.querySelector(".form__input[type=text]").value = task.title;
+                modal.modal.querySelector(".form__input[type=checkbox]").checked = task.status == TASK_COMPLETE;
             });
 
             taskNode.querySelector(".task-list__item-status").addEventListener("change", (e) => {

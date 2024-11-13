@@ -35,8 +35,8 @@
         <div class="modal__content">
             <div class="modal__content-title">Регистрация</div>
             <form class="form">
-                <input class="form__input" name="username" type="text" placeholder="имя пользователя">
-                <input class="form__input" name="password" type="password" placeholder="пароль">
+                <input class="form__input" name="username" type="text" placeholder="имя пользователя" required minlength="3" maxlength="255">
+                <input class="form__input" name="password" type="password" placeholder="пароль" required minlength="5" maxlength="255">
                 <button type="submit" class="btn">Зарегистрироваться</button>
             </form>
         </div>
@@ -45,7 +45,7 @@
         <div class="modal__content">
             <div class="modal__content-title">Добавить задачу</div>
             <form class="form">
-                <input class="form__input" name="title" type="text" placeholder="названия задачи">
+                <input class="form__input" name="title" type="text" placeholder="названия задачи" required minlength="1">
                 <input class="form__input" name="status" type="checkbox">
                 <button type="submit" class="btn">Добавить</button>
             </form>
