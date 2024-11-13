@@ -17,8 +17,21 @@ session_start();
 
 function main()
 {
-    if($_SERVER['REQUEST_URI'] == '/') {
+    // Если запрос на корневую страницу
+    if ($_SERVER['REQUEST_URI'] == '/') {
         require __DIR__ . '/public/index.html'; 
+        return;
+    }
+
+    // Проверяем, что запрос к api
+    if (strpos($_SERVER['REQUEST_URI'], '/api') === 0) {
+        // Проверка что запросы идут с клиента
+        if (!isset($_SERVER['HTTP_ORIGIN']) && !isset($_SERVER['HTTP_REFERER'])) {
+            header('Location: /');
+            return;
+        }
+    } else {
+        header('Location: /');
         return;
     }
 
