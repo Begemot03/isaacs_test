@@ -1,6 +1,7 @@
 export default class NavbarController {
 	constructor(authController) {
 		this.authController = authController;
+		this.addTask = document.querySelector(".add-task");
 		this.nav = document.querySelector(".nav");
 	}
 
@@ -17,6 +18,8 @@ export default class NavbarController {
 		const registrationBtn = this.createNavItem("Зарегистрироваться", ["registration"]);
 		const loginBtn = this.createNavItem("Войти", ["login"]);
 
+		this.addTask.classList.add("hidden");
+
 		this.nav.appendChild(registrationBtn);
 		this.nav.appendChild(loginBtn);
 	}
@@ -24,9 +27,11 @@ export default class NavbarController {
 	authNavbar() {
 		const logoutBtn = this.createNavItem("Выйти", ["logout"]);
 
+		this.addTask.classList.remove("hidden");
+
 		logoutBtn.addEventListener("click", async () => {
 			await this.authController.logout();
-			this.update(); // Обновление навбара после выхода
+			this.update();
 		});
 
 		this.nav.appendChild(logoutBtn);

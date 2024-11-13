@@ -61,6 +61,12 @@ a {
 	background-color: var(--header-clr);
 }
 
+.header .container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
 /* Утилитарные классы */
 .container {
 	max-width: 1280px;
@@ -69,16 +75,8 @@ a {
 	margin-inline: auto;
 }
 
-.flex {
-	display: flex;
-}
-
-.items-center {
-	align-items: center;
-}
-
-.justify-between {
-	justify-content: space-between;
+.hidden {
+	display: none;
 }
 
 /* Компоненты */

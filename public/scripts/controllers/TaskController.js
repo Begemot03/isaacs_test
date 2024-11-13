@@ -8,7 +8,7 @@ export default class TaskController {
     constructor() {
         this.taskModal = new ModalController({
             selector: ".task-modal",
-            openBtnSelector: ".add-task",
+            openBtnSelector: ".add-task__btn",
             title: "Добавить задачу",
             submit: (e) => this.handleCreateTask(e),
             submitText: "Добавить",
