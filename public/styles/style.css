@@ -120,12 +120,17 @@ a {
 	color: var(--nav-hovered-item-clr);
 }
 
+/* Добавление задачи */
+.add-task {
+	margin-top: 2rem;
+}
+
 /* Task list */
 .task-list {
 	display: grid;
 	gap: var(--task-list-gap);
 	grid-template-columns: 1fr;
-	margin-top: 2rem;
+	margin: 2rem 0;
 }
 
 .task-list__item {
@@ -147,6 +152,10 @@ a {
 	color: var(--task-creationTS-text-clr);
 	font-size: var(--task-creationTS-text-sz);
 	margin-top: 1rem;
+}
+
+.task-list__item-empty {
+	text-align: center;
 }
 
 /* Модальное окно */
